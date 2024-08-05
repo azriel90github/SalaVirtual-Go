@@ -1,0 +1,16 @@
+services: #configurando serviços
+  db: #banco de dados
+    image: postgres:latest #imagem do banco
+    restart: unless-stopped #restaurar assim que alterar
+    ports:
+      - ${PROJECTO_DATABASE_PORT:5432}:5432 #porta do banco
+    environment: #configurando ambiente
+      POSTGRES_USER: ${PROJECTO_DATABASE_USER} #nome de usuario do banco
+      POSTGRES_PASSWORD: ${PROJECTO_DATABASE_PASSWORD} #senha do banco
+      POSTGRES_DB: ${PROJECTO_DATABASE_NAME} #nome da BD
+    volumes:
+      - db-data:/var/lib/postgresql/data #persistindo dados do banco
+
+volumes:
+  db:
+    driver: local # arquivos file system serão clonados para o computador local
