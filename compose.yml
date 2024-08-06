@@ -1,16 +1,34 @@
 services: #configurando serviços
   db: #banco de dados
     image: postgres:latest #imagem do banco
-    restart: unless-stopped #restaurar assim que alterar
+    restart: unless-stopped #restaurar a menos que eu parar manualmente
     ports:
-      - ${PROJECTO_DATABASE_PORT:5432}:5432 #porta do banco
+      - ${PROJECTO_DATABASE_PORT:-5432}:5432 #porta do banco
     environment: #configurando ambiente
       POSTGRES_USER: ${PROJECTO_DATABASE_USER} #nome de usuario do banco
       POSTGRES_PASSWORD: ${PROJECTO_DATABASE_PASSWORD} #senha do banco
       POSTGRES_DB: ${PROJECTO_DATABASE_NAME} #nome da BD
     volumes:
-      - db-data:/var/lib/postgresql/data #persistindo dados do banco
+      - db:/var/lib/postgresql/data #persistindo dados do banco
+
+  pgadmin: #cliente para o servidor postgres
+    image: dpage/pgadmin4:latest
+    restart: unless-stopped #restaurar a menos que eu parar manualmente
+    depends_on:
+      - db #esperando o banco estar pronto
+    ports:
+      - 8081:80 #porta do cliente
+    environment: #configurando ambiente
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    volumes:
+      - pgadmin:/var/lib/pgadmin #directorio onde serão salvos os arquivos
+
+
+
 
 volumes:
   db:
     driver: local # arquivos file system serão clonados para o computador local
+  pgadmin:
+    driver: local  
