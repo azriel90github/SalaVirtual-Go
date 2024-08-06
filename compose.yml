@@ -24,9 +24,6 @@ services: #configurando serviços
     volumes:
       - pgadmin:/var/lib/pgadmin #directorio onde serão salvos os arquivos
 
-
-
-
 volumes:
   db:
     driver: local # arquivos file system serão clonados para o computador local
