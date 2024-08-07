@@ -7,7 +7,7 @@ import (//tem a função fundamental de incorporar funcionalidades de outros mó
 
 func main() {//funcao para ponto de entrada do programa
 		if err := godotenv.Load(); err != nil { // Tenta carregar as variáveis de ambiente do arquivo .env
-			panic(err) // Se houver algum erro, o programa pára com uma mensagem de erro
+			panic(err) // Se houver algum erro, o programa para com uma mensagem de erro
 		}
 
 		cmd := exec.Command( // Cria um novo comando para ser executado
