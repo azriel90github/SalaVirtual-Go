@@ -2,30 +2,30 @@ services: #configurando serviços
   db: #banco de dados
     image: postgres:latest #imagem do banco
     restart: unless-stopped #restaurar a menos que eu parar manualmente
-    ports:
+    ports: #portas
       - ${PROJECTO_DATABASE_PORT:-5432}:5432 #porta do banco
     environment: #configurando ambiente
-      POSTGRES_USER: ${PROJECTO_DATABASE_USER} #nome de usuario do banco
-      POSTGRES_PASSWORD: ${PROJECTO_DATABASE_PASSWORD} #senha do banco
-      POSTGRES_DB: ${PROJECTO_DATABASE_NAME} #nome da BD
-    volumes:
+      POSTGRES_USER: ${PROJECTO_DATABASE_USER} #nome de usuario do banco postgres
+      POSTGRES_PASSWORD: ${PROJECTO_DATABASE_PASSWORD} #senha do banco postgres
+      POSTGRES_DB: ${PROJECTO_DATABASE_NAME} #nome da BD postgres
+    volumes: #volumes
       - db:/var/lib/postgresql/data #persistindo dados do banco
 
   pgadmin: #cliente para o servidor postgres
-    image: dpage/pgadmin4:latest
+    image: dpage/pgadmin4:latest #imagem do pgadmin4
     restart: unless-stopped #restaurar a menos que eu parar manualmente
     depends_on:
       - db #esperando o banco estar pronto
-    ports:
+    ports: #portas
       - 8081:80 #porta do cliente
     environment: #configurando ambiente
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: password
-    volumes:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com #email de acesso para o postgres
+      PGADMIN_DEFAULT_PASSWORD: password #senha de acesso para o postgres
+    volumes: #volumes
       - pgadmin:/var/lib/pgadmin #directorio onde serão salvos os arquivos
 
-volumes:
-  db:
-    driver: local # arquivos file system serão clonados para o computador local
-  pgadmin:
-    driver: local  
+volumes: #volumes
+  db: #banco de dados
+    driver: local #arquivos file system serão clonados para o computador local
+  pgadmin: #postegres
+    driver: local #arquivos file system do postgres serão clonados para o computador local
