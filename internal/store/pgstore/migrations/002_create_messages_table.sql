@@ -1,5 +1,4 @@
-
-create table if not exists rooms (
+create table if not exists messages (
   "id"               uuid       primary key not null    default gen_random_uui(), --id da sala
   "room_id"          uuid                   not null,   --id paa chave estrangeira
   "message"          varchar(255)           not null,   --campo para as perguntas
