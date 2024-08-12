@@ -1,14 +1,13 @@
-create table if not exists messages (
-  "id"               uuid       primary key not null    default gen_random_uui(), --id da sala
-  "room_id"          uuid                   not null,   --id paa chave estrangeira
-  "message"          varchar(255)           not null,   --campo para as perguntas
-  "reaction_count"   bigint                 not null    default 0, --campo para as reaçoes, por default 0
-  "ansewered"        boolean                not null    default false,
+CREATE TABLE IF NOT EXISTS messages (
+    "id"                uuid            PRIMARY KEY     NOT NULL    DEFAULT gen_random_uuid(),
+    "room_id"           uuid                            NOT NULL,
+    "message"           VARCHAR(255)                    NOT NULL,
+    "reaction_count"    BIGINT                          NOT NULL    DEFAULT 0,
+    "answered"          BOOLEAN                         NOT NULL    DEFAULT false,
 
-  foreign key (room_id) references rooms(id) --referencias para chave estrangeira
+    FOREIGN KEY (room_id) REFERENCES rooms(id)
 );
-
 
 ---- create above / drop below ----
 
-drop table if exists messages;
+DROP TABLE IF EXISTS messages;

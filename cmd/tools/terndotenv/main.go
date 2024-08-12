@@ -2,6 +2,7 @@ package main //mecanismo para organizar o código em módulos reutilizáveis
 
 import (//tem a função fundamental de incorporar funcionalidades de outros módulos ou bibliotecas em seu código
 	"os/exec" // Importa o pacote para executar comandos externos
+	
 	"github.com/joho/godotenv" // Importa o pacote para carregar variáveis de ambiente
 )
 

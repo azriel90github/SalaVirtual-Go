@@ -1,9 +1,9 @@
-create table if not exists rooms (
-    "id"       uuid                 primary key    not null     default gen_random_uui(), --id da sala
-    "theme"    varchar(255)                        not null --nome da sala
+CREATE TABLE IF NOT EXISTS rooms (
+    "id"    uuid            PRIMARY KEY     NOT NULL    DEFAULT gen_random_uuid(),
+    "theme" VARCHAR(255)                    NOT NULL
 );
 
 ---- create above / drop below ----
 
-drop table if exists rooms;
+DROP TABLE IF EXISTS rooms;
 
