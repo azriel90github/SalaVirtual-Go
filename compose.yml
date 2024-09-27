@@ -3,7 +3,7 @@ services: #configurando serviços
     image: postgres:latest #imagem do banco
     restart: unless-stopped #restaurar a menos que eu parar manualmente
     ports: #portas
-      - ${PROJECTO_DATABASE_PORT:-5433}:5433 #porta do banco
+      - ${PROJECTO_DATABASE_PORT:-5432}:5432 #porta do banco
     environment: #configurando ambiente
       POSTGRES_USER: ${PROJECTO_DATABASE_USER} #nome de usuario do banco postgres
       POSTGRES_PASSWORD: ${PROJECTO_DATABASE_PASSWORD} #senha do banco postgres
